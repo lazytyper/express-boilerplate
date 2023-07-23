@@ -1,0 +1,18 @@
+{
+	"name": "express-boilerplate",
+	"version": "0.0.1",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node ./bin/www"
+	},
+	"keywords": [],
+	"author": "Egon Schmid",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.18.2",
+		"node-sass": "^9.0.0",
+		"pug": "^3.0.2"
+	}
+}
