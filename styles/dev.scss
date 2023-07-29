@@ -1,11 +1,7 @@
-div:empty {
-	&::before {
-		content: attr(class);
-		font-style: italic;
-		line-height: 20px;
-	}
-	display: flex;
+.element-info {
+	font-style: italic;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	user-select: none;
 }
