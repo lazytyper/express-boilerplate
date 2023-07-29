@@ -1,0 +1,11 @@
+div:empty {
+	&::before {
+		content: attr(class);
+		font-style: italic;
+		line-height: 20px;
+	}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
