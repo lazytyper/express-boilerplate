@@ -1,26 +1,39 @@
-export default function ajax(url, method, data) {
+function get(url, params) {
+	const queryParams = new URLSearchParams(params);
 	return new Promise(function(resolve, reject) {
 		var xhr = new XMLHttpRequest();
-		xhr.open(method, url);
-		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.open('GET', url + '?' + queryParams.toString());
 		xhr.onload = function() {
-			if (this.status >= 200 && this.status < 300) {
-				resolve(JSON.parse(xhr.response));
+			if (xhr.status === 200) {
+				resolve(xhr.responseText);
 			} else {
-				reject({
-					status: this.status,
-					statusText: xhr.statusText
-				});
+				reject(xhr.statusText);
 			}
 		};
 		xhr.onerror = function() {
-			reject({
-				status: this.status,
-				statusText: xhr.statusText
-			});
+			reject(xhr.statusText);
 		};
-		xhr.send(JSON.stringify(data));
+		xhr.send();
 	});
-};
+}
 
-// Path: public/js/ajax.js
+function post(url, params) {
+	return new Promise(function(resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', url);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				resolve(xhr.responseText);
+			} else {
+				reject(xhr.statusText);
+			}
+		};
+		xhr.onerror = function() {
+			reject(xhr.statusText);
+		};
+		xhr.send(JSON.stringify(params));
+	});
+}
+
+export {get, post}
