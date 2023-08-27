@@ -3,7 +3,6 @@ const sass = require('node-sass');
 const path = require('path');
 const fs = require('fs');
 
-const serverRoot = path.dirname(__dirname);
 const scssPath = path.join(serverRoot, 'styles');
 const router = express.Router();
 
