@@ -10,6 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public'));
 
+// include body-parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // include css router
 app.use(require('./routes/utils/scss2css'));
 app.use('/', require('./routes/routes.js'));
