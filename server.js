@@ -1,10 +1,17 @@
+require('./build.js')();
+
 const express = require('express');
 const app = express();
 
 global.serverRoot = __dirname;
 
 const defaultPort = 3000;
-const port = process.argv[2] || defaultPort;
+let port = process.argv[2] || defaultPort;
+
+/* nodemon workaround */
+if(port === 'server.js') {
+	port = defaultPort;
+}
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -15,12 +22,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// include css router
-app.use(require('./routes/utils/scss2css'));
 app.use('/', require('./routes/routes.js'));
-
-// include demo router
-app.use('/demo', require('./routes/demo/demo.js'));
 
 // use pug
 app.set('view engine', 'pug');
