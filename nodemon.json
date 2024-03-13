@@ -1,7 +1,8 @@
 {
 	"watch": [
 		"styles",
-		"views"
+		"views",
+		"routes"
 	],
 	"ext": "scss,js,mjs,cjs,json,pug"
 }
