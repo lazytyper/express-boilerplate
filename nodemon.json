@@ -2,7 +2,8 @@
 	"watch": [
 		"styles",
 		"views",
-		"routes"
+		"routes",
+		"server.js"
 	],
 	"ext": "scss,js,mjs,cjs,json,pug"
 }
