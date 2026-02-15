@@ -1,18 +1,17 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const sassMiddleware = require("sass-middleware");
+const sassMiddleware = require('sass-middleware');
 
 global.serverRoot = __dirname;
 
 const defaultPort = 3000;
 let port = process.argv[2] || defaultPort;
 
-const DEV = process.env.NODE_ENV !== "production";
+const DEV = process.env.NODE_ENV !== 'production';
 
-
-const SRC = path.join(__dirname, "src", "scss");
-const DEST = path.join(__dirname, "public", "css");
+const SRC = path.join(__dirname, 'src', 'scss');
+const DEST = path.join(__dirname, 'public', 'css');
 
 /* nodemon workaround */
 if (port === 'server.js') {
@@ -24,10 +23,10 @@ app.use(
 	sassMiddleware({
 		src: SRC,
 		dest: DEST,
-		prefix: "/css",
+		prefix: '/css',
 		force: DEV,
 		sourceMap: DEV,
-		outputStyle: DEV ? "expanded" : "compressed"
+		outputStyle: DEV ? 'expanded' : 'compressed'
 	})
 );
 
@@ -35,7 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
-app.use("/css", express.static(DEST, { maxAge: DEV ? 0 : "7d" }));
+app.use('/css', express.static(DEST, { maxAge: DEV ? 0 : '7d' }));
 
 // include body-parser
 const bodyParser = require('body-parser');
